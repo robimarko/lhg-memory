@@ -5,7 +5,7 @@
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Robert Marko <robimarko@gmail.com>");
 MODULE_DESCRIPTION("LHG Memory test");
-MODULE_VERSION(“0.01”);
+MODULE_VERSION("0.01");
 
 static int __init lkm_example_init(void) {
 	printk(KERN_INFO “Hello, World!\n”);
