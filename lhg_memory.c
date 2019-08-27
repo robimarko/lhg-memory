@@ -1,33 +1,20 @@
-#include <linux/ioport.h>
-#include <linux/kernel.h>
-#include <linux/device.h>
-#include <linux/highmem.h>
-#include <linux/pfn.h>
+#include <linux/init.h>
 #include <linux/module.h>
-#include <linux/version.h>
-#include <linux/string.h>
-#include <linux/err.h>
-#include <linux/scatterlist.h>
-#include <linux/delay.h>
-
-#include <net/sock.h>
-#include <net/tcp.h>
+#include <linux/kernel.h>
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Robert Marko <robimarko@gmail.com>");
 MODULE_DESCRIPTION("LHG Memory test");
+MODULE_VERSION(“0.01”);
 
-int init_module(void)
-{
-	printk(KERN_INFO "Hello world 1.\n");
-
-	/* 
-	 * A non 0 return means init_module failed; module can't be loaded. 
-	 */
+static int __init lkm_example_init(void) {
+	printk(KERN_INFO “Hello, World!\n”);
 	return 0;
 }
 
-void cleanup_module(void)
-{
-	printk(KERN_INFO "Goodbye world 1.\n");
+static void __exit lkm_example_exit(void) {
+	printk(KERN_INFO “Goodbye, World!\n”);
 }
+
+module_init(lkm_example_init);
+module_exit(lkm_example_exit);
