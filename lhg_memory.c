@@ -17,24 +17,17 @@ MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Robert Marko <robimarko@gmail.com>");
 MODULE_DESCRIPTION("LHG Memory test");
 
-static int owl = 0;
-module_param(owl, int, 0);
-MODULE_PARM_DESC(owl, "An OwL");
+int init_module(void)
+{
+	printk(KERN_INFO "Hello world 1.\n");
 
-extern struct resource iomem_resource;
-
-static int __init lhg_mem_module_init(void){
-	if(1){
-		printk("This shit is running\n");
-		return -ENOMEM;
-	}
+	/* 
+	 * A non 0 return means init_module failed; module can't be loaded. 
+	 */
 	return 0;
-}//--------------------------------------------------------
+}
 
-//*********************************************************
-
-static void __exit lhg_mem_module_exit (void){
-}//--------------------------------------------------------
-
-module_init(lhg_mem_module_init);
-module_exit(lhg_mem_module_exit);
+void cleanup_module(void)
+{
+	printk(KERN_INFO "Goodbye world 1.\n");
+}
